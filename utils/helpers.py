@@ -63,6 +63,9 @@ def render_top_nav():
     st.markdown(
         """
         <style>
+            [data-testid="stSidebar"] { display: none !important; }
+            [data-testid="collapsedControl"] { display: none !important; }
+            [data-testid="stHeader"] { display: none !important; }
             .block-container { padding-top: 2rem; }
         </style>
         """,
@@ -108,3 +111,4 @@ def render_top_nav():
         
 
     st.divider()
+
