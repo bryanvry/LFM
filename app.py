@@ -5,13 +5,10 @@ from utils.helpers import render_top_nav
 # Set configuration
 st.set_page_config(page_title="LFM Process", layout="wide")
 
-# Hide sidebar and header on the login screen
+# Adjust top padding for the login screen
 st.markdown(
     """
     <style>
-        [data-testid="stSidebar"] { display: none !important; }
-        [data-testid="collapsedControl"] { display: none !important; }
-        [data-testid="stHeader"] { display: none !important; }
         .block-container { padding-top: 2rem !important; }
     </style>
     """,
@@ -60,4 +57,5 @@ with status_col1:
     st.caption(f"Active Tables: {st.session_state['PRICEBOOK_TABLE']}, {st.session_state['SALES_TABLE']}")
 with status_col2:
     st.markdown("**System Status: Connected**")
+
     st.caption("Database link verified. All parsers operational.")
