@@ -56,3 +56,56 @@ def generate_barcode_excel(df):
     workbook.close()
     output.seek(0)
     return output.getvalue()
+import streamlit as st
+
+def render_top_nav():
+    # 1. Hide the Sidebar globally and reduce top padding
+    st.markdown(
+        """
+        <style>
+            [data-testid="stSidebar"] { display: none !important; }
+            [data-testid="collapsedControl"] { display: none !important; }
+            .block-container { padding-top: 2rem; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # 2. Setup the top bar grid
+    col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 1, 1, 1, 1.5])
+
+    with col1: st.page_link("app.py", label="Home")
+    with col2: st.page_link("pages/1_order.py", label="Orders")
+    with col3: st.page_link("pages/2_invoice.py", label="Invoices")
+    with col4: st.page_link("pages/3_search.py", label="Search")
+    with col5: st.page_link("pages/4_admin.py", label="Admin")
+    
+    with col6:
+        # 3. Persistent Store Selector
+        current_store = st.session_state.get("selected_store", "Twain")
+        store_index = 0 if current_store == "Twain" else 1
+        
+        selected_store = st.selectbox(
+            "Location", 
+            ["Twain", "Rancho"], 
+            index=store_index,
+            label_visibility="collapsed",
+            key="global_store"
+        )
+
+        # Update session state and refresh if changed
+        if selected_store != current_store:
+            st.session_state["selected_store"] = selected_store
+            st.rerun()
+
+    # 4. Route Tables based on the selected store
+    if st.session_state.get("selected_store") == "Twain":
+        st.session_state["PRICEBOOK_TABLE"] = "PricebookTwain"
+        st.session_state["SALES_TABLE"] = "salestwain1"
+        st.session_state["VENDOR_MAP_TABLE"] = "BeerandLiquorKeyTwain"
+    else:
+        st.session_state["PRICEBOOK_TABLE"] = "PricebookRancho"
+        st.session_state["SALES_TABLE"] = "salesrancho1"
+        st.session_state["VENDOR_MAP_TABLE"] = "BeerandLiquorKeyRancho"
+        
+    st.divider()
