@@ -59,13 +59,10 @@ def generate_barcode_excel(df):
 import streamlit as st
 
 def render_top_nav():
-    # 1. Hide the Sidebar and Header globally
+    # 1. Adjust top padding for all sub-pages
     st.markdown(
         """
         <style>
-            [data-testid="stSidebar"] { display: none !important; }
-            [data-testid="collapsedControl"] { display: none !important; }
-            [data-testid="stHeader"] { display: none !important; }
             .block-container { padding-top: 2rem; }
         </style>
         """,
@@ -109,4 +106,5 @@ def render_top_nav():
         st.session_state["SALES_TABLE"] = "salesrancho1"
         st.session_state["VENDOR_MAP_TABLE"] = "BeerandLiquorKeyRancho"
         
+
     st.divider()
