@@ -1,0 +1,17 @@
+streamlit==1.39.0
+pandas==2.2.2
+openpyxl==3.1.5
+numpy==1.26.4
+pyarrow==16.1.0
+pdfplumber==0.11.4
+XlsxWriter
+sqlalchemy
+psycopg2-binary
+pg8000           
+xlrd
+python-barcode 
+Pillow 
+streamlit-keyup
+psutil
+beautifulsoup4
+requests
