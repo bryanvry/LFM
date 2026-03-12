@@ -5,6 +5,19 @@ from utils.helpers import render_top_nav
 # Set configuration
 st.set_page_config(page_title="LFM Process", layout="wide", initial_sidebar_state="collapsed")
 
+# Hide sidebar and header on the login screen
+st.markdown(
+    """
+    <style>
+        [data-testid="stSidebar"] { display: none !important; }
+        [data-testid="collapsedControl"] { display: none !important; }
+        [data-testid="stHeader"] { display: none !important; }
+        .block-container { padding-top: 2rem !important; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 MASTER_PASSKEY = st.secrets["APP_PASSKEY"]
 current_dir = os.path.dirname(os.path.abspath(__file__))
 LOGO_PATH = os.path.join(current_dir, "logo.png")

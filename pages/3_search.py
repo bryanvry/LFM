@@ -2,11 +2,14 @@ import streamlit as st
 import pandas as pd
 from st_keyup import st_keyup
 from utils.db import get_db_connection
-from utils.helpers import _norm_upc_12
+from utils.helpers import _norm_upc_12, render_top_nav
+
+st.set_page_config(page_title="Search | LFM", layout="wide", initial_sidebar_state="collapsed")
 
 if not st.session_state.get("authenticated", False):
-    st.info("Please login from the main page.")
-    st.stop()
+    st.switch_page("app.py")
+
+render_top_nav()
 
 selected_store = st.session_state["selected_store"]
 

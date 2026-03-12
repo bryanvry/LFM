@@ -6,11 +6,14 @@ import time
 from datetime import datetime
 from sqlalchemy import text
 from utils.db import get_db_connection, get_last_upload_time, set_last_upload_time, load_vendor_map, load_jcsales_key
-from utils.helpers import to_xlsx_bytes
+from utils.helpers import to_xlsx_bytes, render_top_nav
+
+st.set_page_config(page_title="Admin | LFM", layout="wide", initial_sidebar_state="collapsed")
 
 if not st.session_state.get("authenticated", False):
-    st.info("Please login from the main page.")
-    st.stop()
+    st.switch_page("app.py")
+
+render_top_nav()
 
 selected_store = st.session_state["selected_store"]
 PRICEBOOK_TABLE = st.session_state["PRICEBOOK_TABLE"]

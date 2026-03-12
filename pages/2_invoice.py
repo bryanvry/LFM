@@ -2,21 +2,26 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
+import re
 from datetime import datetime
 from utils.db import get_db_connection, log_activity, load_pricebook, load_vendor_map, load_jcsales_key
-from utils.helpers import _norm_upc_12, to_csv_bytes, generate_barcode_excel
+from utils.helpers import _norm_upc_12, to_csv_bytes, generate_barcode_excel, to_xlsx_bytes, render_top_nav
 from parsers import SouthernGlazersParser, NevadaBeverageParser, BreakthruParser, JCSalesParser, UnifiedParser, CostcoParser
 from sqlalchemy import text
 
+st.set_page_config(page_title="Invoices | LFM", layout="wide", initial_sidebar_state="collapsed")
+
 if not st.session_state.get("authenticated", False):
-    st.info("Please login from the main page.")
-    st.stop()
+    st.switch_page("app.py")
+
+render_top_nav()
 
 selected_store = st.session_state["selected_store"]
 PRICEBOOK_TABLE = st.session_state["PRICEBOOK_TABLE"]
+SALES_TABLE = st.session_state["SALES_TABLE"]
 VENDOR_MAP_TABLE = st.session_state["VENDOR_MAP_TABLE"]
 
-st.header("Invoice Processing")
+st.header(f"Invoice Processing: {selected_store}")
 
 vendor_options = ["Unified", "JC Sales", "Southern Glazer's", "Nevada Beverage", "Breakthru", "Costco"]
 vendor = st.selectbox("Select Vendor", vendor_options)

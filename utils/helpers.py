@@ -65,7 +65,8 @@ def render_top_nav():
         <style>
             [data-testid="stSidebar"] { display: none !important; }
             [data-testid="collapsedControl"] { display: none !important; }
-            .block-container { padding-top: 2rem; }
+            [data-testid="stHeader"] { display: none !important; }
+            .block-container { padding-top: 2rem !important; }
         </style>
         """,
         unsafe_allow_html=True,
