@@ -59,14 +59,14 @@ def generate_barcode_excel(df):
 import streamlit as st
 
 def render_top_nav():
-    # 1. Hide the Sidebar globally and reduce top padding
+    # 1. Hide the Sidebar and Header globally
     st.markdown(
         """
         <style>
             [data-testid="stSidebar"] { display: none !important; }
             [data-testid="collapsedControl"] { display: none !important; }
             [data-testid="stHeader"] { display: none !important; }
-            .block-container { padding-top: 2rem !important; }
+            .block-container { padding-top: 2rem; }
         </style>
         """,
         unsafe_allow_html=True,
