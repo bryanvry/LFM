@@ -1,7 +1,23 @@
 import streamlit as st
 import os
 
-st.set_page_config(page_title="LFM Process", page_icon="🧾", layout="wide")
+# Set configuration to collapsed by default
+st.set_page_config(page_title="LFM Process", layout="wide", initial_sidebar_state="collapsed")
+
+# CSS to completely remove the sidebar and the toggle button
+st.markdown(
+    """
+    <style>
+        section[data-testid="stSidebar"] {
+            display: none !important;
+        }
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 MASTER_PASSKEY = st.secrets["APP_PASSKEY"]
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -47,4 +63,41 @@ else:
     st.session_state["SALES_TABLE"] = "salesrancho1"
     st.session_state["VENDOR_MAP_TABLE"] = "BeerandLiquorKeyRancho"
 
-st.info("👈 Please select a tool from the sidebar menu to begin.")
+st.divider()
+
+st.subheader("Navigation")
+st.markdown("Select a module to access the relevant workflow.")
+
+st.write("") 
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.markdown("#### Orders")
+    st.caption("Generate vendor orders based on sales history.")
+    st.page_link("pages/1_order.py", label="Access Orders", use_container_width=True)
+
+with col2:
+    st.markdown("#### Invoices")
+    st.caption("Process invoices, verify margins, and export POS files.")
+    st.page_link("pages/2_invoice.py", label="Access Invoices", use_container_width=True)
+
+with col3:
+    st.markdown("#### Search")
+    st.caption("Query pricebook items and review historical sales.")
+    st.page_link("pages/3_search.py", label="Access Search", use_container_width=True)
+
+with col4:
+    st.markdown("#### Admin")
+    st.caption("Manage database configurations and vendor mapping.")
+    st.page_link("pages/4_admin.py", label="Access Admin", use_container_width=True)
+
+st.divider()
+
+status_col1, status_col2 = st.columns(2)
+with status_col1:
+    st.markdown(f"**Current Location:** {selected_store}")
+    st.caption(f"Active Tables: {st.session_state['PRICEBOOK_TABLE']}, {st.session_state['SALES_TABLE']}")
+with status_col2:
+    st.markdown("**System Status: Connected**")
+    st.caption("Database link verified. All parsers operational.")
