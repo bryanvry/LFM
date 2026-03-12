@@ -8,7 +8,7 @@ from sqlalchemy import text
 from utils.db import get_db_connection, get_last_upload_time, set_last_upload_time, load_vendor_map, load_jcsales_key
 from utils.helpers import to_xlsx_bytes, render_top_nav
 
-st.set_page_config(page_title="Admin | LFM", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Admin | LFM", layout="wide")
 
 if not st.session_state.get("authenticated", False):
     st.switch_page("app.py")

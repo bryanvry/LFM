@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from utils.db import get_db_connection, load_pricebook
 from utils.helpers import _norm_upc_12, to_xlsx_bytes, render_top_nav
 
-st.set_page_config(page_title="Orders | LFM", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Orders | LFM", layout="wide")
 
 # Kick unauthenticated users back to the login screen
 if not st.session_state.get("authenticated", False):

@@ -4,7 +4,7 @@ from st_keyup import st_keyup
 from utils.db import get_db_connection
 from utils.helpers import _norm_upc_12, render_top_nav
 
-st.set_page_config(page_title="Search | LFM", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Search | LFM", layout="wide")
 
 if not st.session_state.get("authenticated", False):
     st.switch_page("app.py")

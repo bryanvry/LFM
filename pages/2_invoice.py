@@ -9,7 +9,7 @@ from utils.helpers import _norm_upc_12, to_csv_bytes, generate_barcode_excel, to
 from parsers import SouthernGlazersParser, NevadaBeverageParser, BreakthruParser, JCSalesParser, UnifiedParser, CostcoParser
 from sqlalchemy import text
 
-st.set_page_config(page_title="Invoices | LFM", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Invoices | LFM", layout="wide")
 
 if not st.session_state.get("authenticated", False):
     st.switch_page("app.py")

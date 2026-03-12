@@ -3,7 +3,7 @@ import os
 from utils.helpers import render_top_nav
 
 # Set configuration
-st.set_page_config(page_title="LFM Process", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="LFM Process", layout="wide")
 
 # Hide sidebar and header on the login screen
 st.markdown(
