@@ -33,10 +33,10 @@ if not st.session_state["authenticated"]:
         st.write("")
         logo_col1, logo_col2, logo_col3 = st.columns([1, 2, 1])
         with logo_col2:
-            st.image(LOGO_PATH, use_column_width=True)
+            st.image(LOGO_PATH, width="stretch")
         
         entered_key = st.text_input("Passkey", type="password", placeholder="Enter passkey...")
-        if st.button("Login", use_container_width=True):
+        if st.button("Login", width="stretch"):
             if entered_key == MASTER_PASSKEY:
                 st.session_state["authenticated"] = True
                 st.rerun() 
@@ -75,22 +75,22 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.markdown("#### Orders")
     st.caption("Generate vendor orders based on sales history.")
-    st.page_link("pages/1_order.py", label="Access Orders", use_container_width=True)
+    st.page_link("pages/1_order.py", label="Access Orders", width="stretch")
 
 with col2:
     st.markdown("#### Invoices")
     st.caption("Process invoices, verify margins, and export POS files.")
-    st.page_link("pages/2_invoice.py", label="Access Invoices", use_container_width=True)
+    st.page_link("pages/2_invoice.py", label="Access Invoices", width="stretch")
 
 with col3:
     st.markdown("#### Search")
     st.caption("Query pricebook items and review historical sales.")
-    st.page_link("pages/3_search.py", label="Access Search", use_container_width=True)
+    st.page_link("pages/3_search.py", label="Access Search", width="stretch")
 
 with col4:
     st.markdown("#### Admin")
     st.caption("Manage database configurations and vendor mapping.")
-    st.page_link("pages/4_admin.py", label="Access Admin", use_container_width=True)
+    st.page_link("pages/4_admin.py", label="Access Admin", width="stretch")
 
 st.divider()
 
